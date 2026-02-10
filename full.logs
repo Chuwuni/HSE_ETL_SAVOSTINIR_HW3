@@ -1,0 +1,29 @@
+580352c4e5dd
+*** Found local files:
+***   * /opt/airflow/logs/dag_id=hw3_full_load/run_id=manual__2026-02-09T23:55:39.517775+00:00/task_id=load_hist_data/attempt=1.log
+[2026-02-09, 23:55:40 UTC] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: hw3_full_load.load_hist_data manual__2026-02-09T23:55:39.517775+00:00 [queued]>
+[2026-02-09, 23:55:40 UTC] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: hw3_full_load.load_hist_data manual__2026-02-09T23:55:39.517775+00:00 [queued]>
+[2026-02-09, 23:55:40 UTC] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2026-02-09, 23:55:40 UTC] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): load_hist_data> on 2026-02-09 23:55:39.517775+00:00
+[2026-02-09, 23:55:40 UTC] {standard_task_runner.py:60} INFO - Started process 457 to run task
+[2026-02-09, 23:55:40 UTC] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'hw3_full_load', 'load_hist_data', 'manual__2026-02-09T23:55:39.517775+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/hw3_full_load.py', '--cfg-path', '/tmp/tmp9xz06wuu']
+[2026-02-09, 23:55:40 UTC] {standard_task_runner.py:88} INFO - Job 6: Subtask load_hist_data
+[2026-02-09, 23:55:40 UTC] {task_command.py:423} INFO - Running <TaskInstance: hw3_full_load.load_hist_data manual__2026-02-09T23:55:39.517775+00:00 [running]> on host 580352c4e5dd
+[2026-02-09, 23:55:40 UTC] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='hw3_full_load' AIRFLOW_CTX_TASK_ID='load_hist_data' AIRFLOW_CTX_EXECUTION_DATE='2026-02-09T23:55:39.517775+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-09T23:55:39.517775+00:00'
+[2026-02-09, 23:55:40 UTC] {base.py:83} INFO - Using connection ID 'target_db' for task execution.
+[2026-02-09, 23:55:40 UTC] {sql.py:450} INFO - Running statement: 
+    DROP TABLE IF EXISTS public.orders;
+    CREATE TABLE public.orders (
+        order_id INT PRIMARY KEY,
+        customer_id INT,
+        amount NUMERIC,
+        order_date DATE,
+        status VARCHAR(20)
+    );
+    , parameters: None
+[2026-02-09, 23:55:40 UTC] {base.py:83} INFO - Using connection ID 'target_db' for task execution.
+[2026-02-09, 23:55:40 UTC] {logging_mixin.py:188} INFO - Loaded 1000 rows history.
+[2026-02-09, 23:55:40 UTC] {python.py:201} INFO - Done. Returned value was: None
+[2026-02-09, 23:55:40 UTC] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=hw3_full_load, task_id=load_hist_data, execution_date=20260209T235539, start_date=20260209T235540, end_date=20260209T235540
+[2026-02-09, 23:55:40 UTC] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-02-09, 23:55:40 UTC] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

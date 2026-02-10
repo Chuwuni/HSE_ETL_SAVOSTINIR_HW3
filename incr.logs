@@ -1,0 +1,31 @@
+580352c4e5dd
+*** Found local files:
+***   * /opt/airflow/logs/dag_id=hw3_incr_load/run_id=manual__2026-02-10T00:10:44.391408+00:00/task_id=load_incr_data/attempt=2.log
+[2026-02-10, 00:12:16 UTC] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: hw3_incr_load.load_incr_data manual__2026-02-10T00:10:44.391408+00:00 [queued]>
+[2026-02-10, 00:12:16 UTC] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: hw3_incr_load.load_incr_data manual__2026-02-10T00:10:44.391408+00:00 [queued]>
+[2026-02-10, 00:12:16 UTC] {taskinstance.py:2170} INFO - Starting attempt 2 of 2
+[2026-02-10, 00:12:16 UTC] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): load_incr_data> on 2026-02-10 00:10:44.391408+00:00
+[2026-02-10, 00:12:16 UTC] {standard_task_runner.py:60} INFO - Started process 491 to run task
+[2026-02-10, 00:12:16 UTC] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'hw3_incr_load', 'load_incr_data', 'manual__2026-02-10T00:10:44.391408+00:00', '--job-id', '8', '--raw', '--subdir', 'DAGS_FOLDER/hw3_incr_load.py', '--cfg-path', '/tmp/tmp_f0or7je']
+[2026-02-10, 00:12:16 UTC] {standard_task_runner.py:88} INFO - Job 8: Subtask load_incr_data
+[2026-02-10, 00:12:16 UTC] {task_command.py:423} INFO - Running <TaskInstance: hw3_incr_load.load_incr_data manual__2026-02-10T00:10:44.391408+00:00 [running]> on host 580352c4e5dd
+[2026-02-10, 00:12:16 UTC] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='hw3_incr_load' AIRFLOW_CTX_TASK_ID='load_incr_data' AIRFLOW_CTX_EXECUTION_DATE='2026-02-10T00:10:44.391408+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-10T00:10:44.391408+00:00'
+[2026-02-10, 00:12:16 UTC] {base.py:83} INFO - Using connection ID 'target_db' for task execution.
+[2026-02-10, 00:12:16 UTC] {base.py:83} INFO - Using connection ID 'target_db' for task execution.
+[2026-02-10, 00:12:16 UTC] {sql.py:450} INFO - Running statement: 
+    INSERT INTO public.orders (order_id, customer_id, amount, order_date, status)
+    SELECT order_id, customer_id, amount, order_date::DATE, status
+    FROM public.orders_stg
+    ON CONFLICT (order_id) DO UPDATE SET
+        customer_id = EXCLUDED.customer_id,
+        amount = EXCLUDED.amount,
+        order_date = EXCLUDED.order_date,
+        status = EXCLUDED.status;
+        
+    DROP TABLE public.orders_stg;
+    , parameters: None
+[2026-02-10, 00:12:16 UTC] {logging_mixin.py:188} INFO - Upserted 220 rows from increment.
+[2026-02-10, 00:12:16 UTC] {python.py:201} INFO - Done. Returned value was: None
+[2026-02-10, 00:12:16 UTC] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=hw3_incr_load, task_id=load_incr_data, execution_date=20260210T001044, start_date=20260210T001216, end_date=20260210T001216
+[2026-02-10, 00:12:16 UTC] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-02-10, 00:12:16 UTC] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
